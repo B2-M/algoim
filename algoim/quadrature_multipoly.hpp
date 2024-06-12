@@ -529,7 +529,7 @@ namespace algoim
             build(true, false);
         }
 
-        // Build quadrature hierarchy for a domain implicitly defined by two polynomials
+        // Build quadrature hierarchy for a domain implicitly defined by three polynomials
         ImplicitPolyQuadrature(const xarray<real,N>& p, const xarray<real,N>& q, const xarray<real,N>& r)
         {
             {
@@ -546,6 +546,32 @@ namespace algoim
                 auto mask = detail::nonzeroMask(r, booluarray<N,ALGOIM_M>(true));
                 if (!detail::maskEmpty(mask))
                     phi.push_back(r, mask);
+            }
+            build(true, false);
+        }
+
+        // Build quadrature hierarchy for a domain implicitly defined by four polynomials
+        ImplicitPolyQuadrature(const xarray<real,N>& p, const xarray<real,N>& q, const xarray<real,N>& r, const xarray<real,N>& s)
+        {
+            {
+                auto mask = detail::nonzeroMask(p, booluarray<N,ALGOIM_M>(true));
+                if (!detail::maskEmpty(mask))
+                    phi.push_back(p, mask);
+            }
+            {
+                auto mask = detail::nonzeroMask(q, booluarray<N,ALGOIM_M>(true));
+                if (!detail::maskEmpty(mask))
+                    phi.push_back(q, mask);
+            }
+            {
+                auto mask = detail::nonzeroMask(r, booluarray<N,ALGOIM_M>(true));
+                if (!detail::maskEmpty(mask))
+                    phi.push_back(r, mask);
+            }
+            {
+                auto mask = detail::nonzeroMask(s, booluarray<N,ALGOIM_M>(true));
+                if (!detail::maskEmpty(mask))
+                    phi.push_back(s, mask);
             }
             build(true, false);
         }
